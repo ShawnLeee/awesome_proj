@@ -1,0 +1,112 @@
+#col1
+{
+    float: left;
+    background: #f7f7f7;
+}
+.col2
+{
+
+    background: green;
+}
+#modelBody
+{
+    background: #fff;
+    width: 400px;
+    margin: auto;
+    padding: 40px;
+}
+#account-header{
+    margin-bottom: 30px;
+
+}
+.accountlogin
+{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.account-weixin, .account-weibo, .account-QQ
+{
+    display: block;
+    border-radius: 3px;
+    width: 300px;
+    height: 40px;
+    color: #fff;
+}
+.account-weixin
+{
+    background: url(../images/wechat.png) 0 -2px no-repeat #62cf69;
+}
+.account-weibo
+{
+    background: url(../images/weibo.png) 0 -2px no-repeat #e24f48;
+}
+.account-QQ
+{
+    background: url(../images/QQ.png) 0 -2px no-repeat #2fa2d7;
+}
+#login, #password
+{
+    display: block;
+}
+#login-header
+{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.form-input
+{
+    padding: 11px;
+    font-size: 14px;
+    color: #d2d2d2;
+    border: 0px;
+    background-color: #fff;
+    width: 298px;
+}
+.signin-action
+{
+    border: 1px solid #e6e6e6;
+    width: 300px;
+}
+#password
+{
+    border-top: 1px solid #e6e6e6;
+}
+h4
+{
+    font-weight: 400;
+    font-size: 15px;
+    color: #5e5e5e;
+}
+input,button,select,textarea
+{
+    outline: none;
+}
+input,textarea{
+    resize: none;
+}
+.signin-form button
+{
+    font-size: 18px;
+}
+.form-submit
+{
+    background-color: #fbbf2f;
+    font-weight: 700;
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+    width: 300px;
+    border-radius: 2px;
+    margin: 20px 0;
+    border: 0;
+}
+.modal-content
+{
+    width: 440px;
+}

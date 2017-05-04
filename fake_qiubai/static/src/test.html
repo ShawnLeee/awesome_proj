@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<style type="text/css">
+#modelBody
+{
+    background: #fff;
+    width: 400px;
+    margin: auto;
+    padding: 40px;
+}
+#account-header{
+    margin-bottom: 30px;
+
+}
+.accountlogin
+{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.account-weixin, .account-weibo, .account-QQ
+{
+    display: block;
+    border-radius: 3px;
+    width: 300px;
+    height: 40px;
+    color: #fff;
+}
+.account-weixin
+{
+    background: url(./images/wechat.png) 0 -2px no-repeat #62cf69;
+}
+.account-weibo
+{
+    background: url(./images/weibo.png) 0 -2px no-repeat #e24f48;
+}
+.account-QQ
+{
+    background: url(./images/QQ.png) 0 -2px no-repeat #2fa2d7;
+}
+#login, #password
+{
+    display: block;
+}
+#login-header
+{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.form-input
+{
+    padding: 11px;
+    font-size: 14px;
+    color: #d2d2d2;
+    border: 0px;
+    background-color: #fff;
+    width: 298px;
+}
+.signin-action
+{
+    border: 1px solid #e6e6e6;
+    width: 300px;
+}
+#password
+{
+    border-top: 1px solid #e6e6e6;
+}
+h4
+{
+    font-weight: 400;
+    font-size: 15px;
+    color: #5e5e5e;
+}
+input,button,select,textarea
+{
+    outline: none;
+}
+input,textarea{
+    resize: none;
+}
+.signin-form button
+{
+    font-size: 18px;
+}
+.form-submit
+{
+    background-color: #fbbf2f;
+    font-weight: 700;
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+    width: 300px;
+    border-radius: 2px;
+    margin: 20px 0;
+    border: 0;
+}
+</style>
+</script>
+<body>
+<div id="modelBody">
+    <div class="signin-account">
+        <h4 id="account-header">社交账号登录</h4>
+        <div class="accountlogin"><a href="" class="account-weixin">使用 微信 账号</a> </div>
+        <div class="accountlogin"><a href="" class="account-weibo">使用 微博 账号</a></div>
+        <div class="accountlogin"><a href="" class="account-QQ">使用 QQ 账号</a></div>
+    </div>
+    <div class="signin-form">
+        <h4 id="login-header">糗事百科账号登录</h4>
+        <form action="">
+            <div class="signin-action">
+                <input id="login" class="form-input" type="text" name="login" placeholder="昵称或邮箱">
+                <input id="password" class="form-input" type="passsword" name="passsword" placeholder="昵称或邮箱">
+            </div>
+            <button type="submit" class="form-submit">登录</button>
+        </form>
+    </div>
+    <div class="signin-footer"></div>
+</div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

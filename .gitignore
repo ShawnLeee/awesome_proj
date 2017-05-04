@@ -1,0 +1,8 @@
+# python
+
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+qiubai_front/node_modules
+venv

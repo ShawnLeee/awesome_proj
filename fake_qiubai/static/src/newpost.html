@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>投稿</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css?a=r">
+</head>
+<style type="text/css">
+#content {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+#post-container
+{
+    padding: 30px;
+    margin: 20px 0;
+    background: #fff;
+}
+#realcontent
+{
+    overflow: hidden;
+}
+div, textarea{
+    -webkit-box-sizing: content-box !important;
+}
+.form-content textarea
+{
+    display: block;
+    background: #f9f9f9;
+}
+#post-text
+{
+    width: 578px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    border: 1px solid #ccc;
+    /*-webkit-box-sizing: content-box !important;*/
+    resize: none;
+}
+input
+{
+    font-style: normal;
+    font-size: 11px;
+}
+#postpicture
+{
+    display: inline-block;
+}
+.photochoosen
+{
+    display: block;
+    overflow: hidden;
+    margin: -1px 0 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+}
+body
+{
+    font-size: 14px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+.postpicture label
+{
+    color: #999;
+    font-weight: 400;
+}
+#postbtn
+{
+    background: red;
+    border-radius: 2px;
+    background: #7bb03e;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px 30px;
+    color: #fff;
+    border: 0;
+}
+.readme
+{
+    width: 250px;
+}
+.readme h3
+{
+    font-size: 16px;
+    padding: 0 0 20px;
+    font-weight: 400;
+    color: #666;
+}
+.readme ol
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.readme ol li
+{
+    padding: 20px 0;
+    border-top: 1px solid #efefef;
+    list-style-position: inside;
+    list-style-type: decimal;
+    line-height: 140%;
+}
+</style>
+
+<body>
+    <div id="content" class="main row">
+        <div id="post-container">
+            <div id="realcontent">
+                <div class="form-content fleft">
+                    <textarea name="post" id="post-text" rows="15" placeholder="分享一件新鲜事..."></textarea>
+                    <div class="photochoosen">
+                        <div class="fright"></div>
+                        <div class="fleft postpicture">
+                            <label>照片:</label>
+                            <input type="file" id="postpicture" name="postpicture">
+                        </div>
+                    </div>
+                    <button id="postbtn">投递</button>
+
+                </div>
+                <div class="readme fright">
+                    <h3>投稿须知</h3>
+                    <ol>
+                        <li>自己的或朋友的糗事，真实有笑点，不含政治、色情、广告、诽谤、歧视等内容。</li>
+                        <li>糗事经过审核后发表</li>
+                        <li>转载请注明出处</li>
+                        <li>
+                            我已阅读并同意糗事百科的《<a href="">用户协议</a>》以及《<a href="">隐私政策</a>》
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dropload.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/usermanager.js?a=3"></script>
+    <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="js/newpost.js?a=3"></script>
+</body>
+
+</html>

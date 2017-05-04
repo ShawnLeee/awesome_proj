@@ -1,0 +1,328 @@
+html
+{
+    -webkit-box-sizing: content-box !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*{
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -box-sizing: content-box;
+    -webkit-font-smoothing: antialiased;
+}*/
+li
+{
+    list-style: none;
+}
+.mb15
+{
+    margin-bottom: 15px;
+}
+.row
+{
+    margin: 0;
+}
+.head, .content-block
+{
+    margin: 0;
+    background: #ffd52b;
+    position: relative;
+    border: 0;
+}
+.logo
+{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.logo a{
+    /*background: red;*/
+    display: block;
+    height: 79px;
+    width: 207px;
+    text-indent: -9999999px;
+    background-image: url(../images/logo2016.png);
+    background-position: 0 0;
+}
+div, h1, ul{
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: #7a4624;
+    font-size: 14px;
+    cursor: pointer;
+}
+body{
+    background: #f7f7f7;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+}
+body a{
+    color: #9b8878;
+}
+a:hover,body a{
+    text-decoration: none;
+}
+.logout
+{
+    line-height: 82px;
+    float: right;
+    text-align: right;
+}
+.menu
+{
+    float: left;
+    margin: 0 30px;
+}
+.menu a{
+    float: left;
+    margin-right: 1px;
+    padding: 0 14px;
+    text-align: center;
+    display: block;
+    font-size: 16.5px;
+    color: #7a4624;
+    height: 78px;
+    line-height: 82px;
+    border-bottom: 4px solid #ffd52b;
+}
+.userbar
+{
+    /*display: none;*/
+    height: 79px;
+    float: right;
+    /*padding-top: 22px;*/
+}
+.fright
+{
+    float: right;
+}
+.author
+{
+    margin: 0 0 17px;
+}
+.author a
+{
+    float: left;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 35px;
+}
+.author img
+{
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    padding: 0;
+    margin-right: 10px;
+}
+.single-clear
+{
+    clear: both;
+}
+.main .col1 .block
+{
+    background-color: #fff;
+    padding: 18px 20px;
+}
+.article 
+{
+    width: 640px;
+    float: right;
+    background: #fff;
+}
+.article a
+{
+    color: #333;
+}
+.articleGender
+{
+    float: left;
+    width: 34px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 10px;
+    text-align: center;
+    padding-left: 12px;
+    margin-top: 10px;
+    margin-left: 8px;
+    color: #fff;
+    background-size: cover;
+}
+.womenIcon
+{
+    background-image: url(../images/nearby_gender_female@1.5x.png)
+}
+.manIcon
+{
+    background-image: url(../images/nearby_gender_male@1.5x.png)
+}
+.stats, .stats a
+{
+    color: #999;
+    font-size: 12px;
+}
+.stats
+{
+    font-size: 12px;
+    margin: 20px 0 10px;
+}
+.stats i 
+{
+    font-style: normal;
+}
+.stats-buttons
+{
+    float: left;
+    height: 35px;
+    font-size: 12px;
+}
+.stats-buttons ul
+{
+    margin-top: 5px;
+    margin-left: 8px;
+}
+.stats-buttons ul li
+{
+    float: left;
+    margin-right: 20px;
+    text-align: center;
+}
+.stats-buttons .comments a i 
+{
+    background-image: url(../images/comment.png);
+}
+.stats-buttons .up a i
+{
+    background-image: url(../images/comment.png);
+}
+.stats-buttons .down a i
+{
+    background-image: url(../images/not_funny.png);
+}
+
+.stats-buttons .comments a i, .stats-buttons .down a i, .stats-buttons .up a i
+{
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    display: block;
+}
+.xpagination
+{
+    margin-bottom: 20px;
+    padding: 0;
+}
+.xpagination li
+{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+}
+a .page-numbers{
+    color: #666;
+}
+.page-numbers
+{
+    display: block;
+    padding: 10px 16px;
+}
+.xpagination li
+{
+    background: #fff;
+}
+.xpagination li a,.xpagination li span, .xpagination li .dots
+{
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.xpagination li .dots
+{
+    margin: auto;
+    width: 40px;
+    padding: 10px 6px;
+}
+.pagination-container
+{
+    display: none;
+    float: right;
+    height: 80px;
+}
+/*.currentpage{
+    background: #FFAB24; 
+}*/
+.login
+{
+    height: 79px;
+    line-height: 79px;
+}
+.login a
+{
+    color: black;
+}
+.login a:hover
+{
+    text-decoration: none;
+}
+.userimg img
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin: 20px 20px; 
+}
+.username
+{
+    /*margin-right: 20px;*/
+}
+#logoutbtn
+{
+    margin-top: 20px;
+    margin-right: 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 60px;
+    text-align: center;
+}
+.col2
+{
+    /*display: none;*/
+}
+.article
+{
+    padding: 18px 20px;
+}
+.article .post-img
+{
+    width: 600px;
+    display: block;
+}
+.fleft
+{
+    float: left;
+}
+.right
+{
+    float: right;
+}
+.dropload-refresh
+{
+    text-align: center;
+}
+#registerbtn
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    margin: 0 10px;
+    color: #9b8878;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css?a=b">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <style>
+        .article-content
+        {
+            width: 960px;
+            margin: 0 auto;
+            padding: 0 10px;
+            overflow: hidden;
+        }
+        .leftarea
+        {
+            float: left;
+            width: 640px;
+        }
+        .rightarea
+        {
+            float: left;
+            width: 300px;
+        }
+        .comments-wrap
+        {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 10px 20px 0;
+            clear: both;
+        }
+        #comments-num
+        {
+            color: #333;
+            font-size: 18px;
+            padding: 10px 0;
+            margin-bottom: 0;
+        }
+        .comment-block
+        {
+            border-top: 1px solid #e7e5e2;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        .comment-block .avatar a img
+        {
+            width: 35px;
+            height: 35px;
+            border-radius: 35px;
+        }
+        .report
+        {
+
+        }
+        .reply
+        {
+            margin-left: 10px;
+            width: 555px;
+        }
+        .reply span
+        {
+
+        }
+        .reply a
+        {
+            display: block;
+        }
+        .reply .body
+        {
+            clear: both;
+            color: #404040;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+        .comment-block .report
+        {
+            color: #ccc;
+            font-size: 12px;
+        }
+        #comment-wrap
+        {
+            padding: 10px 20px;
+            /*margin-left: -20p;*/
+            width: 640px;
+            background: #fff;
+            border-top: 1px solid #f4f2ef;
+        }
+        #comment-wrap form
+        {
+            position: relative;
+        }
+        div, input
+        {
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+        }
+        .comment-area
+        {
+            width: 460px;
+            padding: 5px 50px 5px 5px;
+            height: 20px;
+            border: 0;
+
+            -webkit-box-sizing: content-box !important; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: content-box !important;    /* Firefox, other Gecko */
+            box-sizing: content-box !important;         /* Opera/IE 8+ */
+        }
+        .comment-submit
+        {
+            border: 0;
+            color: #fff;
+            background-color: #ffa015 !important;
+            line-height: 31px !important;
+            padding: 0 5px !important;
+            width: 55px;
+            display: block;
+            text-align: center;
+            z-index: 999;
+            border-radius: 2px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border-style: outset;
+        }
+        body
+        {
+            -webkit-font-smoothing: antialiased;
+        }
+        #loadmore
+        {
+            width: 100%;
+            border: 0;
+            margin-bottom: 10px;
+            height: 35px;
+            border-radius: 4px;
+            background: #a5a5a5;
+        }
+    </style>
+</head>
+<body>
+<div id="main-content" class="main">
+    <div class="article-content">
+        <div class="leftarea">
+            <div class="comments-wrap">
+                <h3 id="comments-num">评论 (256)</h3>
+                <div id="comment-list" class="comments"></div>
+            </div>
+            <div>
+                <button id="loadmore">加载更多</button>
+            </div>
+            <div id="comment-wrap">
+                <form id="comment-form">
+                    <input type="text" placeholder="我有话说..." class="comment-area">
+                    <button type="submit" class="comment-submit">评论</button>
+                </form>
+            </div>
+        </div>
+        <div class="rightarea"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/navbar.js?a=x"></script>
+<script type="text/javascript" src="js/usermanager.js"></script>
+<script type="text/javascript" src="js/main.js?a=4"></script>
+<script type="text/javascript" src="js/article.js?a=2"></script>
+
+</body>
+</html>

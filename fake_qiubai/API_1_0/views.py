@@ -18,6 +18,7 @@ from PIL import ImageFile
 from django.conf import settings
 from uuid import uuid4
 import os
+from django.views.decorators.csrf import csrf_exempt
 
 class TestAuth(APIView):
     def get(self, request):
@@ -215,7 +216,8 @@ class PostCreateView(APIView):
 
     authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = (IsAuthenticated,)
-
+    
+    @csrf_exempt
     def post(self, request):
         content = request.POST.get('content')
         files = request.FILES.getlist('pic')

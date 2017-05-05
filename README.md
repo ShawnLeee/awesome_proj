@@ -11,5 +11,5 @@
 项目中的数据是从糗事百科网站爬取下来存储在本地mysql数据库中，对一些数据采用redis进行了缓存 
  
 ![效果展示](http://ww1.sinaimg.cn/large/6c3951c4ly1ffab6jbrwyg20d90jihdt.gif)    
-pc页面
-![pc页面](http://ww1.sinaimg.cn/large/6c3951c4ly1fface3jrkng20rq0l6nph.gif)
+pc页面展示图
+[Tap Me](http://ww1.sinaimg.cn/large/6c3951c4ly1ffac3hskppg20u60lc7wr.gif).

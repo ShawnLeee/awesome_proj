@@ -6,4 +6,7 @@
 * python fake_qiubai/manage.py runserver
 * cd qiubai_front
 * npm install
-* npm run dev
+* npm run dev    
+前端页面暂时只适配了移动端，pc端页面在django static中     
+ 
+![效果展示](http://ww1.sinaimg.cn/large/6c3951c4ly1ffab6jbrwyg20d90jihdt.gif)

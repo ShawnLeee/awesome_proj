@@ -3,7 +3,7 @@
         <!-- <div class="content-left">
             <PostCell v-for="post in arrdata" v-bind:post="post" :key="post.post_id"></PostCell>
         </div> -->
-        <mt-loadmore :bottom-method="loadBottom" :top-method="loadTop" ref="loadmore">
+        <mt-loadmore :bottom-method="loadBottom" ref="loadmore">
          <div class="content-left">
             <PostCell v-for="post in arrdata" v-bind:post="post" :key="post.post_id"></PostCell>
         </div>   
@@ -60,12 +60,6 @@ export default {
                     }.bind(this));
                 }
             },
-            loadTop(){
-                this.arrdata = [];
-                console.log(this.arrdata);
-                this.getPosts(1);
-                this.$refs.loadmore.onTopLoaded();
-            }
         },
         mounted: function(){
             this.getPosts(1);

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'API_1_0',
     'corsheaders',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,22 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
     os.path.join(BASE_DIR,'media/'),
 ]
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.cache.RedisCache',
+#         'LOCATION': '127.0.0.1:6379',
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+#         }
+#     }
+# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}

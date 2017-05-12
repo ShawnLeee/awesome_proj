@@ -6,7 +6,7 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
-from models import Reply, Post, FakeUser
+from models import Reply, Post, FakeUser, xlocaltime
 from rest_framework.response import Response
 from .redis_cache import *
 from utils.fake_tool import timecounter
@@ -19,28 +19,29 @@ from django.conf import settings
 from uuid import uuid4
 import os
 from django.views.decorators.csrf import csrf_exempt
+from utils.decorator import auth_required, xlogin_required
+from forms import VoteForm
 
+@auth_required
 class TestAuth(APIView):
+
+    @xlogin_required
     def get(self, request):
-        authentication_classes = (SessionAuthentication, TokenAuthentication)
-        permission_classes = (IsAuthenticated,)
         return Response({'status': 'OK'})
 
+@auth_required
 class UserMsg(APIView):
 
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-
+    @xlogin_required
     def get(self, request):
         the_user = request.user
         user = FakeUser.objects.get(id=the_user.id)
         return Response(user.to_dict())
 
+@auth_required
 class UserPassword(APIView):
 
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-
+    @xlogin_required
     def post(self, request):
 
         new_password = request.POST.get('newpassword')
@@ -53,12 +54,10 @@ class UserPassword(APIView):
         except Exception as e:
             return Response({'status':1, 'errormsg':e})
 
-
+@auth_required
 class SuperSetPassword(APIView):
 
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-
+    @xlogin_required
     def post(self, request):
         try:
             req_user = request.user
@@ -98,7 +97,8 @@ class RegisterView(APIView):
             return Response(err_msg)
 
         try:
-            new_user = FakeUser.objects.create_user(username=username, password=password)
+            new_user = FakeUser.objects.create_user(username=username,
+                                                    password=password)
             new_user.save()
             return Response({
                 'status' : 0,
@@ -138,6 +138,7 @@ class PostView(APIView):
 
     # @timecounter
     def get(self, request):
+        # print(request.path, request.get_host(), request.get_full_path(), request.is_secure())
         page = request.GET.get('page', 1)
         posts, page = Post.objects.get_all_post(current_page=page)
         return Response([post.to_dict() for post in posts])
@@ -212,12 +213,10 @@ class PostReplyView(APIView):
         return Response({'reply_msg':reply_msg, 'data': [rep.to_dict() for rep in replies]})
 
 
+@auth_required
 class PostCreateView(APIView):
 
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-    
-    @csrf_exempt
+    @xlogin_required
     def post(self, request):
         content = request.POST.get('content')
         files = request.FILES.getlist('pic')
@@ -255,12 +254,10 @@ class PostCreateView(APIView):
             return Response(e)
 
 
-
+@auth_required
 class ReplyCreateView(APIView):
 
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-
+    @xlogin_required
     def post(self, request):
         user = request.user
         articleid = request.POST.get('articleid')
@@ -291,6 +288,102 @@ class ReplyCreateView(APIView):
 
         except Exception as e:
             return Response(e)
+
+
+@auth_required
+class VoteView(APIView):
+
+    @xlogin_required
+    def post(self, request):
+
+        involved_type = request.POST.get('involved_type') # 1 vote，2 downvote
+        trigger_user_id = request.user.id
+        involved_post_id = request.POST.get('involved_post_id')
+        involved_reply_id = request.POST.get('involved_reply_id')
+        involved_user_id = request.POST.get('involved_user_id')
+        status = request.POST.get('status')
+
+        if not involved_user_id:
+            return Response({'status':2, 'error_msg':'Missing Parameter involved_user_id'})
+
+        if not involved_type:
+            return Response({'status':2, 'error_msg':'Missing parameter involved_type'})
+
+        if involved_type != '1' and involved_type != '2':
+            return Response({'status':2,
+                             'error_msg': 'Parameter involved_type should be 1 or 2'})
+
+        if not status:
+            return Response({'status':2, 'error_msg':'Missging Parameter status'})
+
+        if status != '0' and status != '1':
+            return Response({'status':3, 'error_msg':'Parameter status should be 0 or 1'})
+
+
+            
+
+        # vote post
+        if involved_type == '1':
+            if not involved_post_id:
+                return Response({'status':2, 'error_msg':'Missging Parameter'})
+            try:
+                vote = Vote.objects.get(trigger_user_id=trigger_user_id, 
+                                        involved_post_id=involved_post_id)
+                vote.involved_type = involved_type
+                vote.status = status
+            except ObjectDoesNotExist:
+                vote = Vote(trigger_user_id=trigger_user_id,
+                            involved_type=involved_type,
+                            involved_post_id=involved_post_id,
+                            involved_user_id=involved_user_id,
+                            status=status,
+                            occurrence_time=xlocaltime())
+
+        elif involved_type == '2':
+            if not involved_reply_id:
+                return Response({'status':2, 'error_msg':'Missging Parameter involved_reply_id'})
+
+            try:
+                vote = Vote.objects.get(trigger_user_id=trigger_user_id, 
+                                        involved_reply_id=involved_reply_id)
+                vote.involved_type = involved_type
+                vote.status = status
+                vote.occurrence_time = xlocaltime()
+            except ObjectDoesNotExist:
+                vote = Vote(trigger_user_id=trigger_user_id,
+                            involved_type=involved_type,
+                            involved_reply_id=involved_reply_id,
+                            involved_user_id=involved_user_id,
+                            status=status,
+                            occurrence_time=xlocaltime())
+
+        try:
+            vote.save()
+            return Response(vote.to_dict())
+        except IntegrityError:
+            return Response('vote failed')
+
+# @auth_required
+class VoteFormView(APIView):
+
+    def post(self, request):
+        form =  VoteForm(request.POST)
+        if form.is_valid():
+            return Response(form.cleaned_data)
+        else:
+            print(form.errors.as_data())
+            msg_list = []
+            err_msg_dict = {
+                'status': 2,
+                'msg':msg_list
+            }
+            for (err_key, err_value) in form.errors.as_data().items():
+                e_value = err_value[0]
+                msg_list.append(e_value.message)
+
+            return Response(err_msg_dict)
+
+
 
 
 

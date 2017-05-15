@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from models import Reply, Post, FakeUser, xlocaltime
 from rest_framework.response import Response
-from .redis_cache import *
+from redis_cache import *
 from utils.fake_tool import timecounter
 from django.db import IntegrityError
 from django.contrib.auth import authenticate
@@ -21,6 +21,7 @@ import os
 from django.views.decorators.csrf import csrf_exempt
 from utils.decorator import auth_required, xlogin_required
 from forms import VoteForm
+from django.db.models import Q
 
 @auth_required
 class TestAuth(APIView):
@@ -231,6 +232,7 @@ class PostCreateView(APIView):
         post = Post.post_withdict(post_dict)
         try:
             post.save()
+            recent_post_add(post.id)
         except Exception as e:
             return Response(e)
 
@@ -291,87 +293,29 @@ class ReplyCreateView(APIView):
 
 
 @auth_required
-class VoteView(APIView):
+class VoteFormView(APIView):
 
     @xlogin_required
     def post(self, request):
-
-        involved_type = request.POST.get('involved_type') # 1 vote，2 downvote
         trigger_user_id = request.user.id
-        involved_post_id = request.POST.get('involved_post_id')
-        involved_reply_id = request.POST.get('involved_reply_id')
-        involved_user_id = request.POST.get('involved_user_id')
-        status = request.POST.get('status')
-
-        if not involved_user_id:
-            return Response({'status':2, 'error_msg':'Missing Parameter involved_user_id'})
-
-        if not involved_type:
-            return Response({'status':2, 'error_msg':'Missing parameter involved_type'})
-
-        if involved_type != '1' and involved_type != '2':
-            return Response({'status':2,
-                             'error_msg': 'Parameter involved_type should be 1 or 2'})
-
-        if not status:
-            return Response({'status':2, 'error_msg':'Missging Parameter status'})
-
-        if status != '0' and status != '1':
-            return Response({'status':3, 'error_msg':'Parameter status should be 0 or 1'})
-
-
-            
-
-        # vote post
-        if involved_type == '1':
-            if not involved_post_id:
-                return Response({'status':2, 'error_msg':'Missging Parameter'})
-            try:
-                vote = Vote.objects.get(trigger_user_id=trigger_user_id, 
-                                        involved_post_id=involved_post_id)
-                vote.involved_type = involved_type
-                vote.status = status
-            except ObjectDoesNotExist:
-                vote = Vote(trigger_user_id=trigger_user_id,
-                            involved_type=involved_type,
-                            involved_post_id=involved_post_id,
-                            involved_user_id=involved_user_id,
-                            status=status,
-                            occurrence_time=xlocaltime())
-
-        elif involved_type == '2':
-            if not involved_reply_id:
-                return Response({'status':2, 'error_msg':'Missging Parameter involved_reply_id'})
-
-            try:
-                vote = Vote.objects.get(trigger_user_id=trigger_user_id, 
-                                        involved_reply_id=involved_reply_id)
-                vote.involved_type = involved_type
-                vote.status = status
-                vote.occurrence_time = xlocaltime()
-            except ObjectDoesNotExist:
-                vote = Vote(trigger_user_id=trigger_user_id,
-                            involved_type=involved_type,
-                            involved_reply_id=involved_reply_id,
-                            involved_user_id=involved_user_id,
-                            status=status,
-                            occurrence_time=xlocaltime())
-
-        try:
-            vote.save()
-            return Response(vote.to_dict())
-        except IntegrityError:
-            return Response('vote failed')
-
-# @auth_required
-class VoteFormView(APIView):
-
-    def post(self, request):
         form =  VoteForm(request.POST)
         if form.is_valid():
-            return Response(form.cleaned_data)
+            cleaned_data = form.cleaned_data
+            try: 
+                vote = Vote.objects.get(Q(trigger_user_id=trigger_user_id),
+                                        Q(involved_type=cleaned_data.get('involved_type')))
+                vote.status = cleaned_data.get('status')
+            except ObjectDoesNotExist:
+                cleaned_data['trigger_user_id'] = trigger_user_id
+                vote = Vote.from_dict(cleaned_data)
+            try:
+                vote.save()
+                return Response(vote.to_dict())
+            except Exception as e:
+                # print(e)
+                return Response('Vote save failed.')
+
         else:
-            print(form.errors.as_data())
             msg_list = []
             err_msg_dict = {
                 'status': 2,
@@ -382,6 +326,20 @@ class VoteFormView(APIView):
                 msg_list.append(e_value.message)
 
             return Response(err_msg_dict)
+
+
+class RecentPosts(APIView):
+
+    def get(self, request):
+        page = request.GET.get('page')
+        if page is None:
+            page = 1
+        else:
+            page = int(page)
+        recentids = recent_posts(page=page)
+        recents = Post.objects.in_bulk(recentids)
+        return Response({'posts':(post.to_dict() for post in recents.values())})
+
 
 
 

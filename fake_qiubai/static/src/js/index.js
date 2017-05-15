@@ -19,7 +19,8 @@ function setupPage()
 
 function loadPosts(params, callback){
     $.ajax({
-        url:"http://127.0.0.1:8000/api/posts/",
+        // url:"http://127.0.0.1:8000/api/posts/",
+        url:"http://127.0.0.1:8000/api/recent/",
         type:"GET",
         data:params,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -43,7 +44,7 @@ function loadNewData(newPage, callback){
         if(data.length == 0){
             return;
         }
-        setupPostsData(data);
+        setupPostsData(data.posts);
         currentPage = newPage;
     });
 }

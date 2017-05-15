@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^postdetail/$', views.PostDetail.as_view()),
     url(r'^post/create/$', views.PostCreateView.as_view()),
     url(r'^hotpost/$', views.PostsView.as_view()),
+    url(r'^recent/$', views.RecentPosts.as_view()),
 
     url(r'^test_auth/$', views.TestAuth.as_view()),
     url(r'^postreplies/$', views.PostReplyView.as_view()),
@@ -23,6 +24,6 @@ urlpatterns = [
     url(r'^supersetpassword/$', views.SuperSetPassword.as_view()),
 
     #vote
-    url(r'vote/$', views.VoteView.as_view()),
-    url(r'voteform/$', views.VoteFormView.as_view()),
+    # url(r'vote/$', views.VoteView.as_view()),
+    url(r'vote/$', views.VoteFormView.as_view()),
 ]

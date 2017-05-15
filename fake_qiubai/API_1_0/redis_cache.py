@@ -69,6 +69,15 @@ def get_reply_msg(post_id):
         reply_msg = cache_reply_msg(post_id=post_id)
     return reply_msg
 
+def recent_post_add(post_id):
+    r.lpush('recent:posts', post_id)
+    r.ltrim('recent:posts', 0, 10)
+
+def recent_posts(page=1, perpage=20):
+    start = (page - 1) * perpage
+    end = page * perpage - 1
+    posts = r.lrange('recent:posts', start, end)
+    return posts
 
 
 

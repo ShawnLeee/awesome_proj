@@ -26,9 +26,10 @@ MEDIA_URL = 'media/'
 SECRET_KEY = '7-2mu#f6@&ni7f(pje%)tkp_%3)@1jf=+slwp=dgq*-o3i8bn1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 AUTH_USER_MODEL = 'API_1_0.FakeUser'
 # Application definition
@@ -124,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
 TIME_ZONE = 'Asia/Shanghai'
 

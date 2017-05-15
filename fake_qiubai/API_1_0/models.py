@@ -42,8 +42,8 @@ class FakeUser(AbstractUser):
     user_xingzuo = models.CharField(max_length=36, null=True, blank=True)
     user_hometown = models.CharField(max_length=200, null=True, blank=True)
 
-    objects = models.Manager()
-    xobjects = UserManager()
+    # objects = models.Manager()
+    # xobjects = UserManager()
 
     def to_dict(self):
         user_dict = {
@@ -162,10 +162,27 @@ class Vote(models.Model):
     trigger_user = models.ForeignKey(FakeUser, related_name='vote_trigger', null=True, blank=True)
     occurrence_time = models.DateTimeField(null=True, blank=True, default=xlocaltime)
 
+    @classmethod
+    def from_dict(cls, vote_dict):
+        print(vote_dict)
+        vote = cls(trigger_user_id=vote_dict.get('trigger_user_id'),
+                   involved_type=vote_dict.get('involved_type'),
+                   involved_reply_id=vote_dict.get('involved_reply_id'),
+                   involved_user_id=vote_dict.get('involved_user_id'),
+                   involved_post_id=vote_dict.get('involved_post_id'),
+                   status=vote_dict.get('status'))
+        return vote
+
     def to_dict(self):
+        o_time = timezone.localtime(self.occurrence_time).strftime('%Y-%m-%d-%H-%M')
         return {
             'status': self.status,
-            'occurrence_time': self.occurrence_time.strftime('%Y-%m-%d-%H-%M')
+            'occurrence_time': o_time,
+            'involved_type': self.involved_type,
+            'involved_user': self.involved_user.id,
+            'involved_reply': self.involved_reply.id,
+            'involved_post': self.involved_post.id if self.involved_post else None,
+            'trigger_user': self.trigger_user.id if self.involved_reply else None,
         }
 
 

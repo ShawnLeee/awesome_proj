@@ -1,4 +1,4 @@
-"""fake_qiubai URL Configuration
+"""kzx_manage URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -13,17 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
-import xadmin
-xadmin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/',include('API_1_0.urls')),
-    url(r'xadmin/', include(xadmin.site.urls), name='xadmin'),
-    url(r'^captcha/', include('captcha.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
-static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

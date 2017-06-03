@@ -164,7 +164,7 @@ class Vote(models.Model):
 
     @classmethod
     def from_dict(cls, vote_dict):
-        print(vote_dict)
+        # print(vote_dict)
         vote = cls(trigger_user_id=vote_dict.get('trigger_user_id'),
                    involved_type=vote_dict.get('involved_type'),
                    involved_reply_id=vote_dict.get('involved_reply_id'),

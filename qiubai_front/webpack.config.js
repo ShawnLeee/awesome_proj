@@ -30,6 +30,14 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+      test: /\.css$/,
+      loader: "style-loader!css-loader"
+      },
+      {
+      test: /\.(eot|woff|woff2|ttf)$/,
+      loader: "file-loader"
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {

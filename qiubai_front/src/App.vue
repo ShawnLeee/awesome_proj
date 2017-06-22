@@ -2,7 +2,7 @@
   <div id="app">
   <el-row style="height: 100%;">
             <el-col :span="4"  style="min-height: 100%; background-color: #324057;">
-                <el-menu :default-active="defaultActive" style="min-height: 100%;" theme="dark" router>
+                <el-menu style="min-height: 100%;" theme="dark" router>
                     <el-menu-item index="manage"><i class="el-icon-menu"></i>首页</el-menu-item>
                     <el-submenu index="2">
                         <template slot="title"><i class="el-icon-document"></i>数据管理</template>
@@ -39,7 +39,7 @@
                 </el-menu>
             </el-col>
 <el-col :span="20" style="height: 100%;overflow: auto;">
-    <el-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+    <!-- <el-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column label="日期" width="120">
               <template scope="scope">{{ scope.row.date }}</template>
@@ -56,7 +56,7 @@
   <div style="margin-top: 20px">
     <el-button @click="toggleSelection([tableData3[1], tableData3[2]])">切换第二、第三行的选中状态</el-button>
     <el-button @click="toggleSelection()">取消选择</el-button>
-  </div>
+  </div> -->
                 <router-view></router-view>
             </el-col>
         </el-row>

@@ -9,10 +9,10 @@ import PostCell from './PostCell.vue';
 import PostDetail from './PostDetail.vue';
 import { routes }from './config/route.config.js';
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-default/index.css';
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 Vue.use(VueResource);
 Vue.use(VueRouter);

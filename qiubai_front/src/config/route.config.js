@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 import Posts from '../Posts.vue';
 import PostDetail from '../PostDetail.vue';
+import chart from '../chart.vue';
 var routes=
 [
         {
@@ -23,6 +24,10 @@ var routes=
             path: '/posts/:module',
             name: 'posts',
             component: Posts
+        },
+        {
+            path: '/userList',
+            component: chart
         }
 ];
 export { routes };
